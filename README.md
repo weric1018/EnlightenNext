@@ -1,8 +1,8 @@
 EnlightenNext
 ===
-######EnlightenNext is the project by springcloud 。Try new ideas！
+###### EnlightenNext is the project by springcloud 。Try new ideas！
 
-#####introduction
+##### introduction
 ```
 EnlightenNext
 ├── common
