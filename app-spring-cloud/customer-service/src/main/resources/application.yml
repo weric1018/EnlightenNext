@@ -1,0 +1,47 @@
+server:
+  port: 7071
+
+info:
+  version: customer-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7070/eureka/
+  instance:
+    hostname: localhost
+    instance-id: http://localhost:7071
+
+spring:
+  application:
+    name: customer-service
+  #oracle.jdbc.driver.OracleDriver
+  datasource:
+    url: jdbc:oracle:thin:@10.232.134.25:1521/p2b
+    username: merebank
+    password: ebank
+    driver-class-name: oracle.jdbc.OracleDriver
+    connection-test-query: "SELECT 1 FROM DUAL"
+    test-while-idle: true
+    test-on-borrow: true
+    validation-interval: 600000
+    validation-query: SELECT 1
+    max-idle: 100
+    maximum-pool-size: 200
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    show-sql: true
+    generate-ddl: false
+
+hystrix:
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 40000  # feign 超时控制
+
+#XML文件位置 指定DAO与SQL语句关联
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+
+product-service:
+  ribbon:
+    ReadTimeout: 10000
+    ConnectTimeout: 500
+    #MaxAutoRetries: 1  # SR6版本,这里设为1,会重试3次,重试次数还和另外的两个值有关

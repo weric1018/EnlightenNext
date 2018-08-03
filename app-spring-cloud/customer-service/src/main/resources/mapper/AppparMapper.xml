@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ynet.mapper.AppparMapper" >
+    <resultMap id="BaseResultMap" type="com.ynet.entity.Apppar" >
+        <id column="apr_code" property="code" jdbcType="VARCHAR" />
+        <result column="apr_name" property="name" jdbcType="VARCHAR" />
+        <result column="apr_value" property="value" jdbcType="VARCHAR" />
+        <result column="apr_showmsg" property="showMsg" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        apr_code, apr_name, apr_value, apr_showmsg
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from pub_apppar
+        where apr_code = #{code,jdbcType=VARCHAR}
+    </select>
+</mapper>

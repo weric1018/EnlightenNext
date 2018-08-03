@@ -1,0 +1,34 @@
+server:
+  port: 7073
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7070/eureka/
+  instance:
+    hostname: localhost
+    instance-id: http://localhost:7073
+spring:
+  application.name: zuul-api
+info:
+  version: zuul-api
+#zuul.routes.service-customer=/c/**
+########本地跳转
+#zuul.routes.api-z.path=/z/**
+#zuul.routes.api-z.url=forward:/local
+###################################
+zuul:
+  routes:
+    service-customer:
+      path: /c/**
+      serviceId: customer-service
+    product-service:
+      path: /p/**
+      serviceId: product-service
+
+
+hystrix:
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 500
